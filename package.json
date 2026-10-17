@@ -16,8 +16,11 @@
     "postcss-sort-media-queries": "^6.7.1",
     "prettier": "^3.4.2",
     "vite": "^7.3.7"
+<<<<<<< HEAD
   },
   "dependencies": {
     "simplelightbox": "^2.14.3"
+=======
+>>>>>>> 3adcfa842cee2604e4db048ba33da527906d7507
   }
 }
