@@ -13,11 +13,11 @@ if (savedData) {
   try {
     const parsedData = JSON.parse(savedData);
 
-    formState.email = parsedData.email ? parsedData.email.trim() : '';
-    formState.message = parsedData.message ? parsedData.message.trim() : '';
+    formData.email = parsedData.email ? parsedData.email.trim() : '';
+    formData.message = parsedData.message ? parsedData.message.trim() : '';
 
-    form.elements.email.value = formState.email;
-    form.elements.message.value = formState.message;
+    if (form.elements.email) form.elements.email.value = formData.email;
+    if (form.elements.message) form.elements.message.value = formData.message;
   } catch (error) {
     console.error('Помилка парсингу JSON з localStorage:', error);
   }
@@ -27,23 +27,23 @@ form.addEventListener('input', event => {
   const target = event.target;
 
   if (target.name === 'email' || target.name === 'message') {
-    formState[target.name] = target.value.trim();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(formState));
+    formData[target.name] = target.value.trim();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
   }
 });
 
 form.addEventListener('submit', event => {
   event.preventDefault();
 
-  if (!formState.email || !formState.message){
+  if (!formData.email || !formData.message) {
     alert('Fill please all fields');
     return;
   }
 
-  console.log({ ...formState });
+  console.log({ ...formData });
 
   localStorage.removeItem(STORAGE_KEY);
-  formState.email = '';
-  formState.message = '';
+  formData.email = '';
+  formData.message = '';
   form.reset();
 });
