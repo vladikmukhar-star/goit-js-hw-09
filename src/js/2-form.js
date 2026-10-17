@@ -1,4 +1,4 @@
-const formState = {
+const formData = {
   email: '',
   message: '',
 };
